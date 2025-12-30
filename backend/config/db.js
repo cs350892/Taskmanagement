@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import e from "express";
 dotenv.config();
 
 const connectDb=async()=>{
@@ -8,8 +7,8 @@ const connectDb=async()=>{
     await mongoose.connect(process.env.MONGO_URI);
     console.log('MongoDB connected');
   } catch (err) {
-    console.error('Failed to connect to MongoDB', err);
-    process.exit(1);
+    console.error('Failed to connect to MongoDB', err)
+    process.exit(1)
   }
 }
 
