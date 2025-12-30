@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { login } from '../services/api.js';
+import '../App.css';
 
-const Login = ({ setToken }) => {
+const Login = ({ setToken, onShowRegister }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,19 +23,23 @@ const Login = ({ setToken }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="email" 
-      value={email} 
-      onChange={(e) => setEmail(e.target.value)} 
-      placeholder="Email" required />
+    <div className="auth-container">
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <input type="email" 
+        value={email} 
+        onChange={(e) => setEmail(e.target.value)} 
+        placeholder="Email" required />
 
-      <input type="password"
-       value={password} o
-       nChange={(e) => setPassword(e.target.value)} 
-       placeholder="Password" required />
+        <input type="password"
+         value={password} 
+         onChange={(e) => setPassword(e.target.value)} 
+         placeholder="Password" required />
 
-      <button type="submit">Login</button>
-    </form>
+        <button type="submit">Login</button>
+      </form>
+      <button onClick={onShowRegister}>Register</button>
+    </div>
   );
 };
 
