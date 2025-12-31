@@ -2,55 +2,54 @@ import React, { useState, useEffect } from 'react';
 import { getUsers, createTaskApi } from '../services/api.js';
 
 const CreateTask = ({ token, refreshTasks }) => {
-  const [users, setUsers] = useState([]);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [assignedUser, setAssignedUser] = useState('');
+  const [users, setUsers] = useState([])
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [assignedUser, setAssignedUser] = useState('')
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const data = await getUsers(token);
-        setUsers(data);
+        const data = await getUsers(token)
+        setUsers(data)
         
         if (data.length > 0) {
-          setAssignedUser(data[0]._id);
+          setAssignedUser(data[0]._id)
         }
-      } 
-      catch (err) {
-        alert('Failed to fetch users');
+      } catch (err) {
+        alert('Failed to fetch users')
       }
-    };
+    }
     
-    fetchUsers();
-  }, [token]);
+    fetchUsers()
+  }, [token])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     
     try {
       const taskData = {
         title: title,
         description: description,
         assignedUser: assignedUser
-      };
-      
-      await createTaskApi(taskData, token);
-      
-      alert('Task created successfully');
-      
-      setTitle('');
-      setDescription('');
-      if (users.length > 0) {
-        setAssignedUser(users[0]._id);
       }
       
-      refreshTasks();
-    } 
-    catch (err) {
-      alert('Failed to create task: ' + err.message);
+      await createTaskApi(taskData, token)
+      
+      alert('Task created successfully')
+      
+      setTitle('')
+      setDescription('')
+      
+      if (users.length > 0) {
+        setAssignedUser(users[0]._id)
+      }
+      
+      refreshTasks()
+    } catch (err) {
+      alert('Failed to create task: ' + err.message)
     }
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -84,7 +83,7 @@ const CreateTask = ({ token, refreshTasks }) => {
       
       <button type="submit">Create Task</button>
     </form>
-  );
-};
+  )
+}
 
-export default CreateTask;
+export default CreateTask

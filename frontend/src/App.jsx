@@ -4,26 +4,26 @@ import Register from './components/Register.jsx';
 import TaskList from './components/TaskList.jsx';
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem('token'));
-  const [showRegister, setShowRegister] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem('token'))
+  const [showRegister, setShowRegister] = useState(false)
 
   const handleShowRegister = () => {
-    setShowRegister(true);
-  };
+    setShowRegister(true)
+  }
 
   const handleBackToLogin = () => {
-    setShowRegister(false);
-  };
+    setShowRegister(false)
+  }
 
   if (token) {
-    return <TaskList token={token} setToken={setToken} />;
+    return <TaskList token={token} setToken={setToken} />
   }
 
   if (showRegister) {
-    return <Register onBackToLogin={handleBackToLogin} />;
+    return <Register onBackToLogin={handleBackToLogin} />
   }
 
-  return <Login setToken={setToken} onShowRegister={handleShowRegister} />;
+  return <Login setToken={setToken} onShowRegister={handleShowRegister} />
 }
 
-export default App;
+export default App

@@ -3,28 +3,31 @@ import { register } from '../services/api.js';
 import '../App.css';
 
 const Register = ({ onBackToLogin }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     
     try {
-      const data = await register(name, email, password);
+      const data = await register(name, email, password)
       
-      alert('Registration successful! Please login now.');
+      alert('Registration successful! Please login now.')
       
-      onBackToLogin();
+      onBackToLogin()
     } 
+    
     catch (err) {
-      alert('Registration failed: ' + err.message);
+      alert('Registration failed: ' + err.message)
     }
-  };
+    
+  }
 
   return (
     <div className="auth-container">
       <h2>Register</h2>
+      
       <form onSubmit={handleSubmit}>
         <input 
           type="text" 
@@ -52,9 +55,10 @@ const Register = ({ onBackToLogin }) => {
         
         <button type="submit">Register</button>
       </form>
+      
       <button onClick={onBackToLogin}>Back to Login</button>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register
